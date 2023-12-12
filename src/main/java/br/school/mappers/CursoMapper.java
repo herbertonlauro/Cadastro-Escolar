@@ -21,7 +21,7 @@ public interface CursoMapper {
     @InheritInverseConfiguration
     Curso toEntity(CursoDTO cursoDTO);
 
-    @Mapping(target = "id", ignore = true)
+
     @InheritInverseConfiguration
     Curso upCurso(@MappingTarget Curso curso, CursoDTO cursoDTO);
 }

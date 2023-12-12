@@ -55,14 +55,6 @@ public class AlunoService {
     }
 
     @Transactional
-    public void adicionarAlunoCurso(Long id, Long idCurso){
-        Aluno aluno = alunoRepository.findByIdOptional(id).orElseThrow();
-        Curso curso = cursoRepository.findByIdOptional(idCurso).orElseThrow();
-            aluno.setCurso(curso);
-            alunoRepository.persist(aluno);
-    }
-
-    @Transactional
     public AlunoDTO editar(Long id, AlunoDTO objDTO) {
         Aluno aluno = alunoRepository.findById(id);
         if (aluno != null) {

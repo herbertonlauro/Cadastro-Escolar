@@ -1,12 +1,12 @@
 package br.school.resource;
 
-import br.school.dto.CursoDTO;
 import br.school.dto.ProfessorDTO;
 import br.school.service.ProfessorService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import java.net.URI;
@@ -31,6 +31,11 @@ public class ProfessorResource {
     public Response createProfessor(ProfessorDTO professorDTO){
         ProfessorDTO Professor = professorService.criar(professorDTO );
         return Response.created(URI.create("/professor/")).entity(Professor).build();
+    }
 
+    @PUT
+    @Path("/{id}")
+    public ProfessorDTO alterarProfessor(@PathParam("id")Long id, @RequestBody ProfessorDTO professor){
+        return professorService.editarProf(id, professor);
     }
 }

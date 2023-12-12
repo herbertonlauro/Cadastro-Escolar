@@ -33,6 +33,12 @@ public class CursoResource {
         return Response.created(URI.create("/cursos/")).entity(curso).build();
 
     }
+    @POST
+    @Path("/{idCurso}/aluno/{idAluno}")
+    public Response adicionarAluno(@PathParam("idCurso") Long idCurso, @PathParam("idAluno") Long id){
+        cursoService.adicionarAlunoCurso(id, idCurso);
+        return Response.ok().build();
+    }
 
     @PUT
     @Path("/{id}")

@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ProfessorDTO {
 
+    private Long id;
     private String nomeProfessor;
     private String emailProfessor;
     private String telefoneProfessor;

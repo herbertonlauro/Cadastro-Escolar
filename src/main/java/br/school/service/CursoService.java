@@ -2,6 +2,7 @@ package br.school.service;
 
 import br.school.dto.CursoDTO;
 import br.school.mappers.CursoMapper;
+import br.school.model.Aluno;
 import br.school.model.Curso;
 import br.school.repository.AlunoRepository;
 import br.school.repository.CursoRepository;
@@ -43,6 +44,14 @@ public class CursoService {
         Curso criarCurso = cursoMapper.toEntity(cursoDTO);
         cursoRepository.persist(criarCurso);
         return cursoMapper.toDTO(criarCurso);
+    }
+
+    @Transactional
+    public void adicionarAlunoCurso(Long id, Long idCurso){
+        Aluno aluno = alunoRepository.findByIdOptional(id).orElseThrow();
+        Curso curso = cursoRepository.findByIdOptional(idCurso).orElseThrow();
+        aluno.setCurso(curso);
+        alunoRepository.persist(aluno);
     }
 
     @Transactional

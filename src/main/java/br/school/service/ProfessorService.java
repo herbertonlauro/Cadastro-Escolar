@@ -9,6 +9,7 @@ import br.school.repository.ProfessorRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,14 @@ public class ProfessorService {
         Professor criarProfessor = professorMapper.toEntity(professorDTO);
         professorRepository.persist(criarProfessor);
         return professorMapper.toDTO(criarProfessor);
+    }
+
+    @Transactional
+    public ProfessorDTO editarProf(Long id, ProfessorDTO professorDTO){
+        Professor professor = professorRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("não encontrado"));
+        professorMapper.upProf(professor, professorDTO);
+        professorRepository.persist(professor);
+        return  professorMapper.toDTO(professor);
     }
 
 

@@ -44,13 +44,6 @@ public class AlunoResource {
         return Response.created(URI.create("/alunos")).entity(alunodto).build();
     }
 
-    @POST
-    @Path("/{idAluno}/cursos/{idCurso}")
-    public Response adicionarAluno(@PathParam("idAluno") Long id,@PathParam("idCurso") Long idCurso){
-        alunoService.adicionarAlunoCurso(id, idCurso);
-        return Response.ok().build();
-    }
-
     @PUT
     @Path("/{id}")
     public AlunoDTO updateAluno(@PathParam("id")Long id,@RequestBody AlunoDTO aluno){
