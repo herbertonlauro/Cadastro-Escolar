@@ -24,7 +24,7 @@ public class ProfessorService {
     ProfessorRepository professorRepository;
 
     @Transactional
-    public List<ProfessorDTO> listarProfessor(){
+    public List<ProfessorDTO> listarProf(){
         List<ProfessorDTO> professorListDTO = new ArrayList<>();
         List<Professor> profLista = professorRepository.listAll();
         for(Professor professor : profLista){
@@ -36,11 +36,13 @@ public class ProfessorService {
     }
 
     @Transactional
-    public ProfessorDTO criar(ProfessorDTO professorDTO){
+    public ProfessorDTO criarProf(ProfessorDTO professorDTO){
         Professor criarProfessor = professorMapper.toEntity(professorDTO);
         professorRepository.persist(criarProfessor);
         return professorMapper.toDTO(criarProfessor);
     }
+
+
 
     @Transactional
     public ProfessorDTO editarProf(Long id, ProfessorDTO professorDTO){

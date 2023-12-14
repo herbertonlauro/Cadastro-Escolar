@@ -1,6 +1,8 @@
 package br.school.service;
 
+import br.school.dto.AlunoDTO;
 import br.school.dto.CursoDTO;
+import br.school.mappers.AlunoMapper;
 import br.school.mappers.CursoMapper;
 import br.school.model.Aluno;
 import br.school.model.Curso;
@@ -21,6 +23,9 @@ public class CursoService {
     CursoMapper cursoMapper;
 
     @Inject
+    AlunoMapper alunoMapper;
+
+    @Inject
     CursoRepository cursoRepository;
 
     @Inject
@@ -35,8 +40,17 @@ public class CursoService {
             CursoDTO dto = cursoMapper.toDTO(curso);
             cursoListDTO.add(dto);
         }
-
         return cursoListDTO;
+    }
+    @Transactional
+    public List<AlunoDTO> ListarCursoAluno(Long id){
+    Curso curso = cursoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("Curso não encontrado"));
+    List<AlunoDTO> alunoDTO = new ArrayList<>();
+        for (Aluno aluno : curso.getAlunos()) {
+            AlunoDTO dto = alunoMapper.toDTO(aluno);
+            alunoDTO.add(dto);
+        }
+        return alunoDTO;
     }
 
     @Transactional
@@ -48,15 +62,15 @@ public class CursoService {
 
     @Transactional
     public void adicionarAlunoCurso(Long id, Long idCurso){
-        Aluno aluno = alunoRepository.findByIdOptional(id).orElseThrow();
-        Curso curso = cursoRepository.findByIdOptional(idCurso).orElseThrow();
+        Aluno aluno = alunoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("não encontrado"));
+        Curso curso = cursoRepository.findByIdOptional(idCurso).orElseThrow(() -> new NotFoundException("não encontrado"));
         aluno.setCurso(curso);
         alunoRepository.persist(aluno);
     }
 
     @Transactional
     public CursoDTO editar(Long id, CursoDTO objDTO) {
-        Curso curso = cursoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("não encontrado"));
+        Curso curso = cursoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("Curso não encontrado"));
             cursoMapper.upCurso(curso, objDTO);
             cursoRepository.persist(curso);
             return cursoMapper.toDTO(curso);
@@ -64,14 +78,8 @@ public class CursoService {
 
     @Transactional
     public void deletar(Long id){
-
-        Curso curso = cursoRepository.findById(id);
-        if (curso != null) {
-            cursoRepository.delete(curso);
-        }else {
-            throw new NotFoundException("Curso não encontrado " + id);
-        }
-
+        Curso curso = cursoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("Curso não encontrado "));
+        cursoRepository.delete(curso);
     }
 
 }

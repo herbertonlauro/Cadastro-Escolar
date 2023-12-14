@@ -1,5 +1,6 @@
 package br.school.resource;
 
+import br.school.dto.AlunoDTO;
 import br.school.dto.CursoDTO;
 import br.school.service.CursoService;
 import jakarta.inject.Inject;
@@ -26,8 +27,16 @@ public class CursoResource {
     public List<CursoDTO> list() {
         return cursoService.listarCurso();
     }
+    @GET
+    @Path("/{idCurso}")
+    public List<AlunoDTO> ListarCursoAluno(@PathParam("idCurso") Long id){
+        return cursoService.ListarCursoAluno(id);
+
+    }
+
 
     @POST
+    @Transactional
     public Response createCurso(CursoDTO cursoDTO){
         CursoDTO curso = cursoService.criar(cursoDTO );
         return Response.created(URI.create("/cursos/")).entity(curso).build();
@@ -35,21 +44,23 @@ public class CursoResource {
     }
     @POST
     @Path("/{idCurso}/aluno/{idAluno}")
+    @Transactional
     public Response adicionarAluno(@PathParam("idCurso") Long idCurso, @PathParam("idAluno") Long id){
         cursoService.adicionarAlunoCurso(id, idCurso);
         return Response.ok().build();
     }
 
     @PUT
-    @Path("/{id}")
-    public CursoDTO updateCurso(@PathParam("id")Long id, @RequestBody CursoDTO curso){
+    @Path("/{idCurso}")
+    @Transactional
+    public CursoDTO updateCurso(@PathParam("idCurso")Long id, @RequestBody CursoDTO curso){
         return cursoService.editar(id, curso);
     }
 
     @DELETE
-    @Path("/{id}")
+    @Path("/{idCurso}")
     @Transactional
-    public Response deletarCurso(@PathParam("id")Long id){
+    public Response deletarCurso(@PathParam("idCurso")Long id){
         cursoService.deletar(id);
         return Response.noContent().build();
     }

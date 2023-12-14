@@ -24,18 +24,18 @@ public class ProfessorResource {
 
     @GET
     public List<ProfessorDTO> listProf() {
-        return professorService.listarProfessor();
+        return professorService.listarProf();
     }
 
     @POST
-    public Response createProfessor(ProfessorDTO professorDTO){
-        ProfessorDTO Professor = professorService.criar(professorDTO );
+    public Response createProfessor(@RequestBody ProfessorDTO professorDTO){
+        ProfessorDTO Professor = professorService.criarProf(professorDTO);
         return Response.created(URI.create("/professor/")).entity(Professor).build();
     }
 
     @PUT
     @Path("/{id}")
-    public ProfessorDTO alterarProfessor(@PathParam("id")Long id, @RequestBody ProfessorDTO professor){
+    public ProfessorDTO alterarProf(@PathParam("id")Long id, @RequestBody ProfessorDTO professor){
         return professorService.editarProf(id, professor);
     }
 }
