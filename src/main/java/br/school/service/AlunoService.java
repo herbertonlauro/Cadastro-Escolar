@@ -36,7 +36,6 @@ public class AlunoService {
             AlunoDTO dto = alunoMapper.toDTO(aluno);
             alunoListDTO.add(dto);
         }
-
         return alunoListDTO;
     }
 

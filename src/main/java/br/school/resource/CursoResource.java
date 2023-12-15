@@ -60,8 +60,6 @@ public class CursoResource {
     @DELETE
     @Path("/{idCurso}")
     @Transactional
-    public Response deletarCurso(@PathParam("idCurso")Long id){
-        cursoService.deletar(id);
-        return Response.noContent().build();
-    }
+    public void deletarCurso(@PathParam("idCurso")Long id){
+        cursoService.deletar(id); }
 }

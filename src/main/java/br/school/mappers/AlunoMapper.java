@@ -18,6 +18,7 @@ public interface AlunoMapper {
     AlunoDTO toDTO(Aluno aluno);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "curso", ignore = true)
     @InheritInverseConfiguration
     Aluno toEntity(AlunoDTO alunoDTO);
 
