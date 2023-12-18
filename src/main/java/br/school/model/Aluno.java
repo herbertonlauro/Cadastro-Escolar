@@ -9,7 +9,6 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Entity(name = "aluno")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Aluno extends PanacheEntityBase {
