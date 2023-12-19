@@ -1,11 +1,11 @@
 package br.school.dto;
 
+import br.school.model.Curso;
 import lombok.*;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class AlunoDTO {
@@ -22,5 +22,5 @@ public class AlunoDTO {
     private String telefoneAluno;
     @Schema(example = "Avenida 23, Bairro: Centro Sul, Cidade: São Paulo, SP", required = true)
     private String enderecoAluno;
-
+    private CursoDTO curso;
 }

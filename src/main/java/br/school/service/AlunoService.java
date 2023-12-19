@@ -3,7 +3,6 @@ package br.school.service;
 import br.school.dto.AlunoDTO;
 import br.school.mappers.AlunoMapper;
 import br.school.model.Aluno;
-import br.school.model.Curso;
 import br.school.repository.AlunoRepository;
 import br.school.repository.CursoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -42,7 +41,7 @@ public class AlunoService {
     @Transactional
     public AlunoDTO buscarPorId(Long id) {
         Aluno aluno = alunoRepository.findById(id);
-        if (aluno != null) return alunoMapper.toDTO(aluno) ;
+        if (aluno != null) return alunoMapper.toDTO(aluno);
         throw new NotFoundException("Aluno não encontrado " + id );
     }
 

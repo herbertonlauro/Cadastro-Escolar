@@ -4,7 +4,7 @@ import br.school.dto.AlunoDTO;
 import br.school.model.Aluno;
 import org.mapstruct.*;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.JAKARTA_CDI)
+@Mapper(componentModel = MappingConstants.ComponentModel.JAKARTA_CDI, uses = {CursoMapper.class})
 public interface AlunoMapper {
 
 

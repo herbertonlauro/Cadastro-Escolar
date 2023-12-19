@@ -2,7 +2,6 @@ package br.school.resource;
 
 
 import br.school.dto.AlunoDTO;
-import br.school.model.Aluno;
 import br.school.service.AlunoService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
