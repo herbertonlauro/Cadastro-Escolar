@@ -11,28 +11,8 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Aluno extends PanacheEntityBase {
+public class Aluno extends Pessoa  {
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-
-    @Column(unique = true, name = "nomealuno")
-    private String nome;
-
-    @Column(unique = true, name = "emailaluno")
-    private String email;
-
-    @Column(name="idadealuno")
-    private int idade;
-
-    @Column(name="telefonealuno")
-    private String telefone;
-
-    @Column(name="enderecoaluno")
-    private String endereco;
 
     @ManyToOne
     @JoinColumn(name = "curso_id")
