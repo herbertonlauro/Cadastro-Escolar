@@ -9,11 +9,6 @@ import org.mapstruct.*;
 @Mapper(componentModel = MappingConstants.ComponentModel.JAKARTA_CDI)
 public interface ProfessorMapper {
 
-  @Mapping(target = "nomeProfessor", source = "nome")
-  @Mapping(target = "emailProfessor", source = "email")
-  @Mapping(target = "telefoneProfessor", source = "telefone")
-  @Mapping(target = "enderecoProfessor", source = "endereco")
-
 
   ProfessorDTO toDTO(Professor professor);
 
