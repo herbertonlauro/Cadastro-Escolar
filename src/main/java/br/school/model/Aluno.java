@@ -18,4 +18,7 @@ public class Aluno extends Pessoa  {
     @JoinColumn(name = "curso_id")
     private Curso curso;
 
+    @ManyToOne
+    @JoinColumn(name = "nota_id")
+    private Nota nota;
 }
