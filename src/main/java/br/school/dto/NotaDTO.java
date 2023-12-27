@@ -1,6 +1,9 @@
 package br.school.dto;
 
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +18,8 @@ import java.util.List;
 @NoArgsConstructor
 public class NotaDTO {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Schema(example = "7,5", required = true)
     private double nota;

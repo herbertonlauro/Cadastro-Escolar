@@ -21,9 +21,6 @@ public class Nota {
 
     private double nota;
 
-    @OneToMany(mappedBy = "curso_id")
-    private List<Curso> cursoNota;
-
-    @OneToMany(mappedBy = "aluno_id")
-    private List<Aluno> alunoNota;
+    @OneToMany(mappedBy = "nota")
+    private List<Aluno> alunoNotas;
 }
