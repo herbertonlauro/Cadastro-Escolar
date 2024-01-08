@@ -21,7 +21,6 @@ public class ProfessorResource {
     @Inject
     ProfessorService  professorService;
 
-
     @GET
     public List<ProfessorDTO> listProf() {
         return professorService.listarProf();
@@ -35,7 +34,7 @@ public class ProfessorResource {
 
     @PUT
     @Path("/{id}")
-    public ProfessorDTO alterarProf(@PathParam("id")Long id, @RequestBody ProfessorDTO professor){
-        return professorService.editarProf(id, professor);
+    public ProfessorDTO editar(@PathParam("id")Long id, @RequestBody ProfessorDTO professor){
+        return professorService.editar(id, professor);
     }
 }

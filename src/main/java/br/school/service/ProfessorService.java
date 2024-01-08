@@ -43,14 +43,12 @@ public class ProfessorService {
     }
 
 
-
     @Transactional
-    public ProfessorDTO editarProf(Long id, ProfessorDTO professorDTO){
+    public ProfessorDTO editar(Long id, ProfessorDTO objDTO){
         Professor professor = professorRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("não encontrado"));
-        professorMapper.upProf(professor, professorDTO);
+        professorMapper.upProf(professor, objDTO);
         professorRepository.persist(professor);
         return  professorMapper.toDTO(professor);
     }
-
 
 }

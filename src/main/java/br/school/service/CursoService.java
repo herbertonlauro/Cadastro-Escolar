@@ -12,6 +12,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
+import jakarta.ws.rs.core.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +65,14 @@ public class CursoService {
     public void adicionarAlunoCurso(Long id, Long idCurso){
         Aluno aluno = alunoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("não encontrado"));
         Curso curso = cursoRepository.findByIdOptional(idCurso).orElseThrow(() -> new NotFoundException("não encontrado"));
+        aluno.setCurso(curso);
+        alunoRepository.persist(aluno);
+    }
+
+    @Transactional
+    public void editarAlunoCurso(Long id, Long idCurso){
+        Curso curso = cursoRepository.findByIdOptional(idCurso).orElseThrow(() -> new NotFoundException("Curso não encontrado"));
+        Aluno aluno = alunoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("Aluno não encontrado"));
         aluno.setCurso(curso);
         alunoRepository.persist(aluno);
     }

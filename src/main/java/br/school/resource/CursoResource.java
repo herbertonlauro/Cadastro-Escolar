@@ -50,6 +50,8 @@ public class CursoResource {
         return Response.ok().build();
     }
 
+
+
     @PUT
     @Path("/{idCurso}")
     @Transactional

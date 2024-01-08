@@ -12,6 +12,8 @@ import java.util.List;
 @NoArgsConstructor
 public class ProfessorDTO {
 
+    private Long id;
+
     @Schema(example = "Gustavo Lemos", required = true)
     private String nome;
     @Schema(example = "gustavolemos@gmail.com", required = true)

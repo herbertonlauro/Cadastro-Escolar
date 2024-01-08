@@ -16,7 +16,7 @@ public interface ProfessorMapper {
   @InheritInverseConfiguration
   Professor toEntity(ProfessorDTO professorDTO);
 
-
+  @Mapping(target = "id", ignore = true)
   @InheritInverseConfiguration
   Professor upProf(@MappingTarget Professor professor, ProfessorDTO professorDTO);
 
