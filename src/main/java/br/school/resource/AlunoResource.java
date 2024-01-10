@@ -31,13 +31,13 @@ public class AlunoResource {
     @Inject
     AlunoService alunoService;
 
-    @Operation(summary = "Listar todos os alunos",description= "Lista todos os alunos cadastrados")
+    @Operation(summary = "Listar todos",description= "Lista todos os alunos cadastrados")
     @GET
     public List<AlunoDTO> listarAluno() {
         return alunoService.listar();
     }
 
-    @Operation(summary = "Buscar aluno por ID",description= "Realizar uma busca individual pelo ID")
+    @Operation(summary = "Buscar aluno",description= "Realizar uma busca individual pelo ID")
     @GET
     @Path("/{id}")
     public AlunoDTO buscarAlunoID(
@@ -55,7 +55,7 @@ public class AlunoResource {
         return Response.created(URI.create("/alunos")).entity(alunodto).build();
     }
 
-    @Operation(summary = "Editar aluno por ID",description= "editar aluno")
+    @Operation(summary = "Editar aluno",description= "editar aluno")
     @PUT
     @Path("/{id}")
     public AlunoDTO updateAluno(

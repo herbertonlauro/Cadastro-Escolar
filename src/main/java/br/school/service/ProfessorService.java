@@ -24,7 +24,7 @@ public class ProfessorService {
     ProfessorRepository professorRepository;
 
     @Transactional
-    public List<ProfessorDTO> listarProf(){
+    public List<ProfessorDTO> listar(){
         List<ProfessorDTO> professorListDTO = new ArrayList<>();
         List<Professor> profLista = professorRepository.listAll();
         for(Professor professor : profLista){
@@ -36,7 +36,7 @@ public class ProfessorService {
     }
 
     @Transactional
-    public ProfessorDTO criarProf(ProfessorDTO professorDTO){
+    public ProfessorDTO criar(ProfessorDTO professorDTO){
         Professor criarProfessor = professorMapper.toEntity(professorDTO);
         professorRepository.persist(criarProfessor);
         return professorMapper.toDTO(criarProfessor);
@@ -50,5 +50,13 @@ public class ProfessorService {
         professorRepository.persist(professor);
         return  professorMapper.toDTO(professor);
     }
+
+    @Transactional
+    public void deletar(Long id){
+    Professor professor = professorRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("não encontrado"));
+    professorRepository.deleteById(id);
+
+    }
+
 
 }

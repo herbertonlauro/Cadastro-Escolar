@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
@@ -23,10 +24,12 @@ public class CursoResource {
     @Inject
     CursoService cursoService;
 
+    @Operation(summary = "Listar todos",description= "Lista todos os Cursos cadastrados")
     @GET
     public List<CursoDTO> list() {
         return cursoService.listarCurso();
     }
+    @Operation(summary = "Listar Aluno por Curso",description= "Buscar alunos por um curso")
     @GET
     @Path("/{idCurso}")
     public List<AlunoDTO> ListarCursoAluno(@PathParam("idCurso") Long id){
@@ -34,7 +37,7 @@ public class CursoResource {
 
     }
 
-
+    @Operation(summary = "Cadastrar  Curso",description= "Ao cadastrar um curso, preencher todos os campos, no campo turno escolha umas das opções")
     @POST
     @Transactional
     public Response createCurso(CursoDTO cursoDTO){
@@ -43,7 +46,7 @@ public class CursoResource {
 
     }
     @POST
-    @Path("/{idCurso}/aluno/{idAluno}")
+    @Path("/{idCurso}/alunos/{idAluno}")
     @Transactional
     public Response adicionarAluno(@PathParam("idCurso") Long idCurso, @PathParam("idAluno") Long id){
         cursoService.adicionarAlunoCurso(id, idCurso);
@@ -51,7 +54,7 @@ public class CursoResource {
     }
 
 
-
+    @Operation(summary = "Editar um Curso",description= "Ao editar um curso deve se atentar para os campos obrigatorios")
     @PUT
     @Path("/{idCurso}")
     @Transactional
