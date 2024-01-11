@@ -3,6 +3,7 @@ package br.school.service;
 import br.school.dto.AlunoDTO;
 import br.school.mappers.AlunoMapper;
 import br.school.model.Aluno;
+import br.school.model.Curso;
 import br.school.repository.AlunoRepository;
 import br.school.repository.CursoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -66,11 +67,7 @@ public class AlunoService {
 
     @Transactional
     public void deletar(Long id) {
-        Aluno aluno = alunoRepository.findById(id);
-        if (aluno != null) {
-            alunoRepository.delete(aluno);
-        }else {
-            throw new NotFoundException("Aluno não encontrado " + id);
-        }
+        Aluno aluno = alunoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("não encontrado"));
+        alunoRepository.delete(aluno);
     }
 }

@@ -13,6 +13,7 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.core.Response;
+import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,6 +89,9 @@ public class CursoService {
     @Transactional
     public void deletar(Long id){
         Curso curso = cursoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("Curso não encontrado "));
+        if(!curso.getAlunos().isEmpty()){
+            throw new RuntimeException("O curso tem alunos cadastrado e não pode ser deletado");
+        }
         cursoRepository.delete(curso);
     }
 

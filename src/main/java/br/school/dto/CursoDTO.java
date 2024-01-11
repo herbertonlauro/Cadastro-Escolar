@@ -17,6 +17,6 @@ public class CursoDTO {
     private String descricaoCurso;
     @Schema(example = "120", required = true)
     private int cargaHorarioCurso;
-    @Schema(example = "Matutino/vespertino/Noturno", required = true)
+    @Schema(example = "Matutino | vespertino | Noturno", required = true)
     private String turnoCurso;
 }

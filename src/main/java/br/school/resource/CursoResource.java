@@ -37,7 +37,7 @@ public class CursoResource {
 
     }
 
-    @Operation(summary = "Cadastrar  Curso",description= "Ao cadastrar um curso, preencher todos os campos, no campo turno escolha umas das opções")
+    @Operation(summary = "Cadastrar  Curso",description= "Ao cadastrar um curso, preencher todos os campos, no campo turno escolha umas das opções Matutino/vespertino/Noturno")
     @POST
     @Transactional
     public Response createCurso(CursoDTO cursoDTO){
@@ -45,6 +45,7 @@ public class CursoResource {
         return Response.created(URI.create("/cursos/")).entity(curso).build();
 
     }
+    @Operation(summary = "Adicionar aluno ao curso",description= "Vincular o aluno com o curso")
     @POST
     @Path("/{idCurso}/alunos/{idAluno}")
     @Transactional
@@ -62,6 +63,7 @@ public class CursoResource {
         return cursoService.editar(id, curso);
     }
 
+    @Operation(summary = "Deletar um Curso",description= "Só pode deletar curso que não tenha aluno.")
     @DELETE
     @Path("/{idCurso}")
     @Transactional
