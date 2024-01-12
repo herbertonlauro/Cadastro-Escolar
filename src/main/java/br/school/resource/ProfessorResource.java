@@ -24,24 +24,27 @@ public class ProfessorResource {
     @Inject
     ProfessorService  professorService;
 
+    @Operation(summary = "Listar professores",description= "Listar todos os registros de professores")
     @GET
     public List<ProfessorDTO> listar() {
         return professorService.listar();
     }
 
+    @Operation(summary = "Cadastrar professores",description= "Ao cadastrar, preencher todos os campos.")
     @POST
     public Response criar(@RequestBody ProfessorDTO professorDTO){
         ProfessorDTO Professor = professorService.criar(professorDTO);
         return Response.created(URI.create("/professor/")).entity(Professor).build();
     }
 
+    @Operation(summary = "Editar professores",description= "Ao editar, deve se atentar para os campos obrigatorios")
     @PUT
     @Path("/{id}")
     public ProfessorDTO editar(@PathParam("id")Long id, @RequestBody ProfessorDTO professor){
         return professorService.editar(id, professor);
     }
 
-    @Operation(summary = "Deletar o registro",description= "Ao deletar o aluno não sera possivel recuperar")
+    @Operation(summary = "Deletar professor",description= "Só pode deletar professor que não tenha curso.")
     @DELETE
     @Path("/{id}")
     @Transactional

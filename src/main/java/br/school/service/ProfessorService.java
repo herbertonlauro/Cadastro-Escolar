@@ -31,7 +31,6 @@ public class ProfessorService {
             ProfessorDTO dtoProf = professorMapper.toDTO(professor);
             professorListDTO.add(dtoProf);
         }
-
         return professorListDTO;
     }
 
