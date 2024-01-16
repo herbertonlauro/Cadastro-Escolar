@@ -2,6 +2,7 @@ package br.school.resource;
 
 
 import br.school.dto.AlunoDTO;
+import br.school.dto.ListaAlunoCursoDTO;
 import br.school.service.AlunoService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -44,6 +45,15 @@ public class AlunoResource {
             @Parameter(description = "Id do Aluno", required = true)
             @PathParam("id")Long id){
         return alunoService.buscarPorId(id);
+    }
+
+    @Operation(summary = "Listar o curso por aluno ",description= "Listar o curso que o aluno esta")
+    @GET
+    @Path("/curso/{id}")
+    public ListaAlunoCursoDTO buscarAlunoCursoID(
+            @Parameter(description = "Id do Aluno", required = true)
+            @PathParam("id")Long id){
+        return alunoService.buscarAlunoPorId(id);
     }
     @APIResponse(responseCode = "201",description = "Cadastrar Aluno",
             content =  @Content(mediaType = MediaType.APPLICATION_JSON,

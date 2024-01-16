@@ -1,6 +1,6 @@
 package br.school.dto;
 
-import br.school.model.Curso;
+
 import lombok.*;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 

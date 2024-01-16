@@ -1,9 +1,9 @@
 package br.school.service;
 
 import br.school.dto.AlunoDTO;
+import br.school.dto.ListaAlunoCursoDTO;
 import br.school.mappers.AlunoMapper;
 import br.school.model.Aluno;
-import br.school.model.Curso;
 import br.school.repository.AlunoRepository;
 import br.school.repository.CursoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -40,10 +40,17 @@ public class AlunoService {
         return alunoListDTO;
     }
 
-    @Transactional
+
     public AlunoDTO buscarPorId(Long id) {
         Aluno aluno = alunoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("não encontrado"));
         return alunoMapper.toDTO(aluno);
+
+    }
+
+
+    public ListaAlunoCursoDTO buscarAlunoPorId(Long id) {
+        Aluno aluno = alunoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("não encontrado"));
+        return alunoMapper.toCursoDTO(aluno);
 
     }
 

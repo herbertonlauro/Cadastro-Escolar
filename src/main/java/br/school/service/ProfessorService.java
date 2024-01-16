@@ -23,7 +23,7 @@ public class ProfessorService {
     @Inject
     ProfessorRepository professorRepository;
 
-    @Transactional
+
     public List<ProfessorDTO> listar(){
         List<ProfessorDTO> professorListDTO = new ArrayList<>();
         List<Professor> profLista = professorRepository.listAll();

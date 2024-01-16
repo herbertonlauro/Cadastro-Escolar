@@ -7,10 +7,11 @@ import lombok.*;
 import java.util.List;
 
 @Entity(name = "professor")
+
 @Getter
 @Setter
 public class Professor extends Pessoa {
 
-    @OneToMany(mappedBy = "professor")
-    public List<Curso> cursoProfessor;
+    @ManyToMany(mappedBy = "professor")
+    public List<Curso> curso;
 }

@@ -32,7 +32,7 @@ public class Curso  extends PanacheEntityBase {
     @OneToMany(mappedBy = "curso")
     private List<Aluno> alunos;
 
-    @ManyToOne
-    private Professor professor;
+    @ManyToMany
+    private List<Professor> professor;
 
 }

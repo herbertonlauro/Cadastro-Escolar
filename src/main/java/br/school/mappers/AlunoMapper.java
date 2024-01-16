@@ -1,6 +1,8 @@
 package br.school.mappers;
 
 import br.school.dto.AlunoDTO;
+import br.school.dto.CursoDTO;
+import br.school.dto.ListaAlunoCursoDTO;
 import br.school.model.Aluno;
 import org.mapstruct.*;
 
@@ -8,6 +10,7 @@ import org.mapstruct.*;
 public interface AlunoMapper {
 
     AlunoDTO toDTO(Aluno aluno);
+    ListaAlunoCursoDTO toCursoDTO(Aluno aluno);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "curso", ignore = true)
