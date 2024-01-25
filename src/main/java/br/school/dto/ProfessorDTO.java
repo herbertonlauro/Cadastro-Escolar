@@ -3,8 +3,6 @@ package br.school.dto;
 import lombok.*;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
-import java.util.List;
-
 @Getter
 @Setter
 @ToString

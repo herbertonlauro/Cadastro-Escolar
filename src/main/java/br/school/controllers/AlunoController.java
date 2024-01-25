@@ -1,4 +1,4 @@
-package br.school.resource;
+package br.school.controllers;
 
 
 import br.school.dto.AlunoDTO;
@@ -26,7 +26,7 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 @Path("/alunos")
 @Tag(name = "Alunos")
-public class AlunoResource {
+public class AlunoController {
 
 
     @Inject
@@ -49,7 +49,7 @@ public class AlunoResource {
 
     @Operation(summary = "Listar o curso por aluno ",description= "Listar o curso que o aluno esta")
     @GET
-    @Path("/curso/{id}")
+    @Path("{id}/cursos/")
     public ListaAlunoCursoDTO buscarAlunoCursoID(
             @Parameter(description = "Id do Aluno", required = true)
             @PathParam("id")Long id){

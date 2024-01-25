@@ -1,7 +1,6 @@
 package br.school.mappers;
 
 import br.school.dto.AlunoDTO;
-import br.school.dto.CursoDTO;
 import br.school.dto.ListaAlunoCursoDTO;
 import br.school.model.Aluno;
 import org.mapstruct.*;

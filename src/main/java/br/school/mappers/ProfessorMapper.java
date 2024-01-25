@@ -1,8 +1,6 @@
 package br.school.mappers;
 
-import br.school.dto.CursoDTO;
 import br.school.dto.ProfessorDTO;
-import br.school.model.Curso;
 import br.school.model.Professor;
 import org.mapstruct.*;
 

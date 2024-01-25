@@ -1,5 +1,6 @@
-package br.school.resource;
+package br.school.controllers;
 
+import br.school.dto.ListaAlunoCursoDTO;
 import br.school.dto.ProfessorDTO;
 import br.school.service.ProfessorService;
 import jakarta.inject.Inject;
@@ -19,7 +20,7 @@ import java.util.List;
 @Tag(name = "Professores")
 @Produces(MediaType.APPLICATION_JSON )
 @Consumes(MediaType.APPLICATION_JSON)
-public class ProfessorResource {
+public class ProfessorController {
 
     @Inject
     ProfessorService  professorService;
@@ -52,4 +53,14 @@ public class ProfessorResource {
                             @PathParam("id") Long id){
         professorService.deletar(id);
     }
+
+    @Operation(summary = "Listar o curso por Professor ",description= "Listar o curso que o Professor esta")
+    @GET
+    @Path("{id}/Professor/")
+    public ProfessorDTO listarCursoPeloProfessor(
+            @Parameter(description = "id do professor", required = true)
+            @PathParam("id") long id){
+        return professorService.buscarProfPorIDcurso(id);
+    }
+
 }
