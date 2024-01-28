@@ -1,6 +1,5 @@
 package br.school.model;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,21 +8,12 @@ import java.util.List;
 @Entity(name = "professor")
 @Getter
 @Setter
-public class Professor extends PanacheEntityBase {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Professor extends Pessoa {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "curso_id")
+    private Curso curso;
 
-    @Column(unique = true)
-    private String nome;
-
-    @Column(unique = true)
-    private String email;
-
-    private String telefone;
-    private String endereco;
-
-    @OneToMany(mappedBy = "professor")
-    public List<Curso> cursoProfessor;
 }

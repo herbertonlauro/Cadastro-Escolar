@@ -1,6 +1,6 @@
 package br.school.dto;
 
-import br.school.model.Curso;
+
 import lombok.*;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
@@ -13,14 +13,14 @@ public class AlunoDTO {
     private Long id;
 
     @Schema(example = "Gustavo Lemos", required = true)
-    private String nomeAluno;
+    private String nome;
     @Schema(example = "gustavolemos@gmail.com", required = true)
-    private String emailAluno;
+    private String email;
     @Schema(example = "23", required = true )
-    private int idadeAluno;
+    private int idade;
     @Schema(example = "(11)2658-2589" , required = true)
-    private String telefoneAluno;
+    private String telefone;
     @Schema(example = "Avenida 23, Bairro: Centro Sul, Cidade: São Paulo, SP", required = true)
-    private String enderecoAluno;
-    private CursoDTO curso;
+    private String endereco;
+
 }

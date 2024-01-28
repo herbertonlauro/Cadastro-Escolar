@@ -15,7 +15,7 @@ A school registration system for the postgraduate thesis project. This applicati
 
 - **Student Registration:** Record and manage student information.
 - **Course Management:** Add, update, and delete courses.
-- **Professor Administration:** Manage professor details and their assigned courses.
+- **Professor Administration:** Manage professorModel details and their assigned courses.
 - **Enrollment System:** Allow students to enroll in courses.
 - **Teacher Course Assignment:** Professors can be assigned to multiple courses.
 - **API Documentation:** Swagger integration for easy API exploration.

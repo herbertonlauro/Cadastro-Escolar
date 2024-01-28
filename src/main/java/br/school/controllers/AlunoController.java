@@ -1,7 +1,8 @@
-package br.school.resource;
+package br.school.controllers;
 
 
 import br.school.dto.AlunoDTO;
+import br.school.dto.ListaAlunoCursoDTO;
 import br.school.service.AlunoService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -25,25 +26,34 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 @Path("/alunos")
 @Tag(name = "Alunos")
-public class AlunoResource {
+public class AlunoController {
 
 
     @Inject
     AlunoService alunoService;
 
-    @Operation(summary = "Listar todos os alunos",description= "Lista todos os alunos cadastrados")
+    @Operation(summary = "Listar todos",description= "Lista todos os alunos cadastrados")
     @GET
     public List<AlunoDTO> listarAluno() {
         return alunoService.listar();
     }
 
-    @Operation(summary = "Buscar aluno por ID",description= "Realizar uma busca individual pelo ID")
+    @Operation(summary = "Buscar aluno",description= "Realizar uma busca individual pelo ID")
     @GET
     @Path("/{id}")
     public AlunoDTO buscarAlunoID(
             @Parameter(description = "Id do Aluno", required = true)
             @PathParam("id")Long id){
         return alunoService.buscarPorId(id);
+    }
+
+    @Operation(summary = "Listar o curso por aluno ",description= "Listar o curso que o aluno esta")
+    @GET
+    @Path("{id}/cursos/")
+    public ListaAlunoCursoDTO buscarAlunoCursoID(
+            @Parameter(description = "Id do Aluno", required = true)
+            @PathParam("id")Long id){
+        return alunoService.buscarAlunoPorId(id);
     }
     @APIResponse(responseCode = "201",description = "Cadastrar Aluno",
             content =  @Content(mediaType = MediaType.APPLICATION_JSON,
@@ -55,7 +65,7 @@ public class AlunoResource {
         return Response.created(URI.create("/alunos")).entity(alunodto).build();
     }
 
-    @Operation(summary = "Editar aluno por ID",description= "editar aluno")
+    @Operation(summary = "Editar aluno",description= "editar aluno")
     @PUT
     @Path("/{id}")
     public AlunoDTO updateAluno(

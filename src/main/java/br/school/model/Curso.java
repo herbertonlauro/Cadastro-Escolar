@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class Curso  extends PanacheEntityBase {
+public class Curso extends PanacheEntityBase {
 
 
     @Id
@@ -32,7 +32,7 @@ public class Curso  extends PanacheEntityBase {
     @OneToMany(mappedBy = "curso")
     private List<Aluno> alunos;
 
-    @ManyToOne
-    private Professor professor;
+    @OneToMany(mappedBy = "curso")
+    private List<Professor> professor;
 
 }

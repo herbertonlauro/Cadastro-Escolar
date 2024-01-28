@@ -1,9 +1,8 @@
 package br.school.service;
 
-import br.school.dto.CursoDTO;
 import br.school.dto.ProfessorDTO;
 import br.school.mappers.ProfessorMapper;
-import br.school.model.Curso;
+import br.school.model.Aluno;
 import br.school.model.Professor;
 import br.school.repository.ProfessorRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -23,34 +22,43 @@ public class ProfessorService {
     @Inject
     ProfessorRepository professorRepository;
 
-    @Transactional
-    public List<ProfessorDTO> listarProf(){
+
+    public List<ProfessorDTO> listar(){
         List<ProfessorDTO> professorListDTO = new ArrayList<>();
         List<Professor> profLista = professorRepository.listAll();
-        for(Professor professor : profLista){
-            ProfessorDTO dtoProf = professorMapper.toDTO(professor);
+        for(Professor professorModel : profLista){
+            ProfessorDTO dtoProf = professorMapper.toDTO(professorModel);
             professorListDTO.add(dtoProf);
         }
-
         return professorListDTO;
     }
 
     @Transactional
-    public ProfessorDTO criarProf(ProfessorDTO professorDTO){
-        Professor criarProfessor = professorMapper.toEntity(professorDTO);
-        professorRepository.persist(criarProfessor);
-        return professorMapper.toDTO(criarProfessor);
+    public ProfessorDTO criar(ProfessorDTO professorDTO){
+        Professor criarProfessorModel = professorMapper.toEntity(professorDTO);
+        professorRepository.persist(criarProfessorModel);
+        return professorMapper.toDTO(criarProfessorModel);
     }
-
 
 
     @Transactional
-    public ProfessorDTO editarProf(Long id, ProfessorDTO professorDTO){
-        Professor professor = professorRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("não encontrado"));
-        professorMapper.upProf(professor, professorDTO);
-        professorRepository.persist(professor);
-        return  professorMapper.toDTO(professor);
+    public ProfessorDTO editar(Long id, ProfessorDTO objDTO){
+        Professor professorModel = professorRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("Professor não encontrado"));
+        professorMapper.upProf(professorModel, objDTO);
+        professorRepository.persist(professorModel);
+        return  professorMapper.toDTO(professorModel);
     }
 
+    @Transactional
+    public void deletar(Long id){
+    Professor professorModel = professorRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("Professor não encontrado"));
+    professorRepository.deleteById(id);
+
+    }
+
+    public ProfessorDTO buscarProfPorIDcurso(long id){
+        Professor professor = professorRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("Professor não encontrado"));
+        return professorMapper.toDTO(professor);
+    }
 
 }

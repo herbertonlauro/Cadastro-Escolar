@@ -1,21 +1,15 @@
 package br.school.mappers;
 
 import br.school.dto.AlunoDTO;
+import br.school.dto.ListaAlunoCursoDTO;
 import br.school.model.Aluno;
 import org.mapstruct.*;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.JAKARTA_CDI, uses = {CursoMapper.class})
 public interface AlunoMapper {
 
-
-    @Mapping(target = "nomeAluno", source = "nome")
-    @Mapping(target = "emailAluno", source = "email")
-    @Mapping(target = "enderecoAluno", source = "endereco")
-    @Mapping(target = "idadeAluno" , source = "idade")
-    @Mapping(target = "telefoneAluno" , source = "telefone")
-
-
     AlunoDTO toDTO(Aluno aluno);
+    ListaAlunoCursoDTO toCursoDTO(Aluno aluno);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "curso", ignore = true)
