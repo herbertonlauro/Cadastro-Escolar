@@ -40,20 +40,6 @@ public class AlunoService {
         return alunoListDTO;
     }
 
-
-    public AlunoDTO buscarPorId(Long id) {
-        Aluno aluno = alunoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("não encontrado"));
-        return alunoMapper.toDTO(aluno);
-
-    }
-
-
-    public ListaAlunoCursoDTO buscarAlunoPorId(Long id) {
-        Aluno aluno = alunoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("não encontrado"));
-        return alunoMapper.toCursoDTO(aluno);
-
-    }
-
     @Transactional
     public AlunoDTO criar(AlunoDTO alunoDTO) {
         Aluno aluno = alunoMapper.toEntity(alunoDTO);
@@ -77,5 +63,19 @@ public class AlunoService {
             throw new RuntimeException("O Aluno esta em curso, não pode ser deletado");
         }
         alunoRepository.delete(aluno);
+    }
+
+
+    public AlunoDTO buscarPorId(Long id) {
+        Aluno aluno = alunoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("não encontrado"));
+        return alunoMapper.toDTO(aluno);
+
+    }
+
+
+    public ListaAlunoCursoDTO buscarAlunoPorId(Long id) {
+        Aluno aluno = alunoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("não encontrado"));
+        return alunoMapper.toCursoDTO(aluno);
+
     }
 }
