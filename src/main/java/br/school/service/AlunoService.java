@@ -17,7 +17,6 @@ import java.util.List;
 
 
 @ApplicationScoped
-@AllArgsConstructor
 public class AlunoService {
 
     @Inject
@@ -65,13 +64,11 @@ public class AlunoService {
         alunoRepository.delete(aluno);
     }
 
-
     public AlunoDTO buscarPorId(Long id) {
         Aluno aluno = alunoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("não encontrado"));
         return alunoMapper.toDTO(aluno);
 
     }
-
 
     public ListaAlunoCursoDTO buscarAlunoPorId(Long id) {
         Aluno aluno = alunoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("não encontrado"));

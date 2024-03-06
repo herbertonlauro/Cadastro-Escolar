@@ -64,7 +64,7 @@ public class CursoService {
         return professorDTO;
     }
 
-    @Transactional
+
     public List<AlunoDTO> ListarCursoAluno(Long id){
         Curso curso = cursoRepository.findByIdOptional(id).orElseThrow(() -> new NotFoundException("Curso não encontrado"));
         List<AlunoDTO> alunoDTO = new ArrayList<>();

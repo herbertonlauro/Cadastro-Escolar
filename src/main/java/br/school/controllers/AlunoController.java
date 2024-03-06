@@ -55,10 +55,11 @@ public class AlunoController {
             @PathParam("id")Long id){
         return alunoService.buscarAlunoPorId(id);
     }
+
+    @Operation(summary = "Cadastro de aluno",description= "Cadastrar aluno")
     @APIResponse(responseCode = "201",description = "Cadastrar Aluno",
             content =  @Content(mediaType = MediaType.APPLICATION_JSON,
-            schema =   @Schema(implementation = AlunoDTO.class )))
-    @Operation(summary = "Cadastro de aluno",description= "Cadastrar aluno")
+                    schema =   @Schema(implementation = AlunoDTO.class )))
     @POST
     public Response createAluno(@RequestBody AlunoDTO aluno){
         AlunoDTO alunodto = alunoService.criar(aluno);
@@ -71,7 +72,8 @@ public class AlunoController {
     public AlunoDTO updateAluno(
             @Parameter(description = "Id do Aluno", required = true)
             @PathParam("id")Long id,
-            @RequestBody AlunoDTO aluno){return alunoService.editar(id, aluno);
+            @RequestBody AlunoDTO aluno){
+        return alunoService.editar(id, aluno);
     }
 
     @Operation(summary = "Deletar aluno",description= "Ao deletar o aluno não sera possivel recuperar")
