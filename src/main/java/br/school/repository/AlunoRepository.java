@@ -8,7 +8,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class AlunoRepository implements PanacheRepository<Aluno> {
 
-
     public void persist(AlunoDTO alunosaveDTO) {
     }
 }
